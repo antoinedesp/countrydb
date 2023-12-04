@@ -86,7 +86,7 @@ function App() {
       else {
         if(selectedRegion == 'All' || selectedRegion == '') {
           viewableCountries = countryList.filter((value) => {
-            return value.name.common.includes(searchTerm);
+            return (value.name.common.includes(searchTerm)  || value.cca3.includes(searchTerm));
           });
           if(viewableCountries.length == 0) {
             viewableCountries = [];
@@ -96,7 +96,7 @@ function App() {
         }
         else {
           viewableCountries = countryList.filter((value) => {
-            return value.region === selectedRegion && value.name.common.includes(searchTerm);
+            return value.region === selectedRegion && (value.name.common.includes(searchTerm) || value.cca3.includes(searchTerm));
           });
           if(viewableCountries.length == 0) {
             viewableCountries = [];
