@@ -1,8 +1,8 @@
 // Thanks https://stackoverflow.com/questions/16637051/adding-space-between-numbers
 
-export default function CountryCard({ country, onCountryClick, theme }) {
+export default function CountryCard({ country, theme }) {
     return (
-        <div onClick={() => onCountryClick(country)} className={"m-2 shadow-sm rounded-md grid grid-rows-2 hover:opacity-75 transition cursor-pointer " + (theme == 'light' ? 'bg-white' : 'bg-slate-800')}>
+        <div className={"m-2 shadow-sm rounded-md grid grid-rows-2 hover:opacity-75 transition cursor-pointer " + (theme == 'light' ? 'bg-white' : 'bg-slate-800')}>
             <div className="h-128 w-full">
                 <img src={country.flags.svg} className="rounded-t-md object-cover h-full" alt={country.name.common + "'s flag"} />
             </div>
