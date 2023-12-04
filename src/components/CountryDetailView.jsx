@@ -9,7 +9,6 @@ export default function CountryDetailView(props) {
   const loadCountry = async (countryCode) => {
     const response = await fetch(`https://restcountries.com/v2/alpha/${countryCode}`);
     response.json().then((country) => {
-      console.log(country);
       setCountry(country);
       setReadyForRender(true);
     });
@@ -19,11 +18,15 @@ export default function CountryDetailView(props) {
     loadCountry(countryCode);
   }, [props]);
 
+  useEffect(() => {
+    loadCountry(countryCode);
+  }, [history.state]);
+
 
   return readyForRender ? (
           <div className="w-full p-16">
             <div className="grid grid-cols-12">
-              <button className={"flex my-12 transition hover:opacity-75 " + (props.theme == 'light' ? 'text-black' : 'text-white')}>
+              <button onClick={() => history.back() } className={"flex my-12 transition hover:opacity-75 " + (props.theme == 'light' ? 'text-black' : 'text-white')}>
                   <svg className="h-5 w-5 align-middle" height="20" width="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="call-made">
                       <path id="Shape" fillRule="evenodd" clipRule="evenodd" d="M6.46447 4.10744L7.64298 5.28596L3.75389 9.17504L18.6031 9.17504L18.6031 10.825L3.75389 10.825L7.64298 14.714L6.46447 15.8926L0.57191 10L6.46447 4.10744Z" fill={props.theme == 'light' ? 'black' : 'white'}/>

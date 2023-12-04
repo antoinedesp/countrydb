@@ -112,18 +112,6 @@ function App() {
       setViewableCountries(viewableCountries);
     }
 
-  const findCountryByCode = async (countryCode) => {
-    while(!isCountryListLoaded) {
-      await loadCountryList();
-    }
-    // console.log('called');
-    let country = countryList.find(country => {
-      console.log(country.cca3);
-      return countryCode === country.cca3;
-    });
-    return country;
-  }
-
   return (
     <>
     <div className={ theme == 'light' ? 'w-full bg-slate-50' : 'w-full bg-slate-900' }>
@@ -140,7 +128,7 @@ function App() {
     </div>
     <Router>
       <Routes>
-        <Route exact path="/country/:countryCode" element={<CountryDetailView findCountry={ (countryCode) => { findCountryByCode(countryCode) } } theme={theme} />} />
+        <Route exact path="/country/:countryCode" element={<CountryDetailView theme={theme} />} />
         <Route path="/" element={(
         <>
         { 
